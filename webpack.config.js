@@ -1,16 +1,33 @@
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require("path");
+//var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 module.exports = {
   entry: {
-    app: ["./client/app.js"]
+    app: ['./client/app.js']
   },
   output: {
-    path: path.resolve(__dirname, "public"),
-    publicPath: "/public/",
-    filename: "index.js"
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/',
+    filename: 'index.js'
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        //exclude: /node_modules/,
+        include: /client/,
+        loader: 'babel-loader',
+        query: {
+          // https://github.com/babel/babel-loader#options
+          cacheDirectory: true,
+          presets: ['es2015']
+        }
+      }
+    ]
   }
+
 };
 
 /*

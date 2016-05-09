@@ -1,7 +1,27 @@
 body{
-  background-color: #93b4cc;
+  background-color: #eeeeee;
 
 }
+
+.page{
+  position: relative;
+}
+
+
+.subjectTree{
+  position: absolute;
+  left: 0px;
+  width: 300px;
+}
+
+.subjectPage{
+  margin-left: 325px;
+}
+
+
+
+
+
 
 .itemNode {
   display: block;
@@ -18,7 +38,7 @@ body{
 
 .itemInfoSection{
   display: block;
-  background-color: #c2c2c2;
+  background-color: #dddddd;
   padding: 3px;
   margin-top: 0px;
   margin-left: 10px;
@@ -32,9 +52,9 @@ body{
 
 .togleContains{
   display: block;
-  border-top: 3px solid #c2c2c2;
-  background-color: #B2BDC5;
-  border-bottom: 3px solid #A3B9C9;
+  border-top: 3px solid #dddddd;
+  background-color: #E3E3E3;
+  border-bottom: 3px solid #E8E8E8;
   height: 9px;
 
   margin-top: 2px;

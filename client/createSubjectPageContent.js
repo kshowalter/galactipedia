@@ -1,7 +1,14 @@
-export default function(universe, subjectId){
-  var subject = universe.db[subjectId];
+export default function(state){
+  var subjectId = state.ui.selectedItem;
+  var subject = state.db[subjectId];
+  console.log(subject);
   var containerId = subject._id.split('.').slice(-2,-1);
-  var container = universe.db[containerId];
+  var container = state.db[containerId];
+  if( !container ){
+    container = {
+      name: 'reality'
+    };
+  }
 
 
   var pageContent = {

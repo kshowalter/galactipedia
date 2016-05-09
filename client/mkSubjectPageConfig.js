@@ -1,25 +1,25 @@
 export default function(pageContent){
 
   var pageConfig = {
-    type: 'div',
+    tag: 'div',
     class: 'infoPage',
     children: [
       {
-        type: 'div',
+        tag: 'div',
         class: 'pageTitleBar',
         children: [
           {
-            type: 'h1',
+            tag: 'h1',
             text: pageContent.title
           }
         ]
       },
       {
-        type: 'div',
+        tag: 'div',
         class: 'pageBody',
         children: [
           {
-            type: 'div',
+            tag: 'div',
             class: 'pageDescription',
             text: pageContent.description
           }

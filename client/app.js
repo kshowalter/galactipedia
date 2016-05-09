@@ -19,10 +19,8 @@ var view = View(store);
 
 
 store.subscribe(function(){
-  var state = store.getState();
-  console.log(state);
-
-  view.update(state);
+  console.log( store.getState() );
+  view.update();
 
 });
 

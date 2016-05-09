@@ -1,5 +1,5 @@
 
-var mkItem = function(universe, spec){
+var mkItem = function(state, spec){
   var containerId = spec._id.split('.').slice(-2,-1);
   var item = {
     _id: spec._id,
@@ -9,17 +9,17 @@ var mkItem = function(universe, spec){
     info: spec.info,
     contains: []
   };
-  universe.db[item._id] = item;
+  state.db[item._id] = item;
 
   spec.contentTypes.forEach( function(contentTypeConfig){
     for( var i = 0; i < contentTypeConfig.num; i++){
       var containedItemId = item._id +'.'+i;
-      universe = create[contentTypeConfig.type](universe, containedItemId);
+      state = create[contentTypeConfig.type](state, containedItemId);
       item.contains.push(containedItemId);
     }
   });
 
-  return universe;
+  return state;
 };
 
 
@@ -27,46 +27,46 @@ var mkItem = function(universe, spec){
 
 var create = {};
 
-create.city = function(universe, _id){
+create.city = function(state, _id){
   var spec = {
     _id: _id,
     type: 'city',
-    name: universe.chance.word(),
+    name: state.chance.word(),
     info: {
-      population: universe.chance.natural({min:10000,max:10000000})
+      population: state.chance.natural({min:10000,max:10000000})
     },
     contentTypes: []
   };
 
-  return mkItem(universe, spec);
+  return mkItem(state, spec);
 };
 
-create.mine = function(universe, _id){
+create.mine = function(state, _id){
   var spec = {
     _id: _id,
     type: 'mine',
-    name: universe.chance.word(),
+    name: state.chance.word(),
     info: {
-      population: universe.chance.natural({min:10,max:1000})
+      population: state.chance.natural({min:10,max:1000})
     },
     contentTypes: []
   };
 
-  return mkItem(universe, spec);
+  return mkItem(state, spec);
 };
 
 
 
 var planetClassifications = ['Earth-like', 'Gas', 'Rocky'];
 
-create.planet = function(universe, _id){
+create.planet = function(state, _id){
   var spec = {
     _id: _id,
     type: 'planet',
-    name: universe.chance.word(),
+    name: state.chance.word(),
     info: {
       population: 0,
-      classification: universe.chance.pickone(planetClassifications)
+      classification: state.chance.pickone(planetClassifications)
     },
     hidden: {},
     contentTypes: []
@@ -76,90 +76,89 @@ create.planet = function(universe, _id){
     spec.contentTypes.push(
       {
         type: 'city',
-        num: universe.chance.natural({min:1,max:10})
+        num: state.chance.natural({min:1,max:10})
       }
     );
   } else if( spec.info.classification === planetClassifications[1]){
     spec.contentTypes.push(
       {
         type: 'mine',
-        num: universe.chance.natural({min:1,max:10})
+        num: state.chance.natural({min:1,max:10})
       }
     );
   } else if( spec.info.classification === planetClassifications[2]){
     spec.contentTypes.push(
       {
         type: 'mine',
-        num: universe.chance.natural({min:1,max:10})
+        num: state.chance.natural({min:1,max:10})
       }
     );
   }
 
-  universe = mkItem(universe, spec);
+  state = mkItem(state, spec);
 
 
 
-  return universe;
+  return state;
 };
 
 
-create.system = function(universe, _id){
+create.system = function(state, _id){
   var spec = {
     _id: _id,
     type: 'system',
-    name: universe.chance.word(),
+    name: state.chance.word(),
     contentTypes: [
       {
         type: 'planet',
-        num: universe.chance.natural({min:1,max:10})
+        num: state.chance.natural({min:1,max:10})
       }
     ]
   };
 
-  return mkItem(universe, spec);
+  return mkItem(state, spec);
 };
 
 
-create.galaxy = function(universe, _id){
+create.galaxy = function(state, _id){
   var spec = {
     _id: _id,
     type: 'galaxy',
-    name: universe.chance.word(),
+    name: state.chance.word(),
     contentTypes: [
       {
         type: 'system',
-        num: universe.chance.natural({min:1,max:1})
+        num: state.chance.natural({min:1,max:1})
       }
     ]
   };
 
-  return mkItem(universe, spec);
+  return mkItem(state, spec);
+};
+
+create.universe = function(state, _id){
+  var spec = {
+    _id: _id,
+    type: 'universe',
+    name: state.chance.word(),
+    contentTypes: [
+      {
+        type: 'galaxy',
+        num: state.chance.natural({min:1,max:1})
+      }
+    ]
+  };
+
+  return mkItem(state, spec);
 };
 
 
 
 /////////////////////////////////////////////////
-export default function(seed){
-  var chance = new Chance(seed);
+export default function(state){
 
-  var universe = {
-    chance: chance,
-    db: {
-      'u': {
-        type: 'universe',
-        contains: []
-      }
-    },
-    lastID: 0
-  };
-
-  var numGalaxies = 1; //chance.natural({min:1,max:10});
-  for( var i = 0; i < numGalaxies; i++){
-    universe = create.galaxy(universe, 'u');
-  }
+  state = create['universe'](state, 'u');
 
 
-
-  universe.contains = universe.db['u'].contains;
-  return universe;
+  return state;
 }

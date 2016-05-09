@@ -2,13 +2,15 @@ import createUniverse from './universe/universe';
 
 export default function(seed) {
   var initState = {
-    universe: createUniverse(seed),
+    chance: new Chance(seed),
+    db: [],
     ui: {
-      treeFocus: '',
-      selectedItem: ''
+      treeFocus: 'u',
+      selectedItem: 'u'
     }
   };
 
+  initState = createUniverse(initState);
 
   return initState;
 }

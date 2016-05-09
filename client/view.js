@@ -9,8 +9,11 @@ export default function(store){
 
   var view = {
     store: store,
-    update: function(state){
-      var viewConfig = mkViewConfig(state.universe);
+    update: function(){
+      var state = this.store.getState();
+      var viewConfig = mkViewConfig(state, function(action){
+        this.store.dispatch(action);
+      });
       configDOM.load(viewConfig);
 
     }

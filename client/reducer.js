@@ -13,6 +13,11 @@ module.exports = function(state, action){
   }
 
 
+  if( action.type === 'selectSubject'){
+    state.ui.selectedSubject = action.subjectID;
+  }
+
+
   /*
   if( action.type === 'roll 3d6'){
     var dice_results = chance.rpg('3d6');

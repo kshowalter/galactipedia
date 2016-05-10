@@ -1,4 +1,4 @@
-import createSubjectPageContent from './createSubjectPageContent';
+import mkSubjectPageConfig from './mkSubjectPageConfig';
 
 var test = function(input){
   console.log('test', input);
@@ -105,7 +105,7 @@ export default function(state, actions){
     tag: 'div',
     class: 'subjectPage',
     children: [
-      createSubjectPageContent(state, actions)
+      mkSubjectPageConfig(state, actions)
     ]
   };
 

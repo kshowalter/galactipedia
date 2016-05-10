@@ -1,14 +1,10 @@
-import mkSubjectPageConfig from './mkSubjectPageConfig';
+import mkPageConfig from './mkPageConfig';
 
 var test = function(input){
   console.log('test', input);
 };
 var togleFold = function(e){
   console.log('test', e);
-};
-
-var selectSubject = function(e){
-  console.log('test', e, e.target);
 };
 
 
@@ -105,7 +101,7 @@ export default function(state, actions){
     tag: 'div',
     class: 'subjectPage',
     children: [
-      mkSubjectPageConfig(state, actions)
+      mkPageConfig(state, actions)
     ]
   };
 

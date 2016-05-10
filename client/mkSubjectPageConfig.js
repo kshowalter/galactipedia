@@ -9,55 +9,33 @@ export default function(state, actions){
   }
 
 
-  var pageContent = {
-    title: subject.name,
-    description: [
-      subject.name,
-      ' is a ',
+  var pageTitle = {
+    tag: 'div',
+    class: 'pageTitleBar',
+    children: [
       {
-        tag: 'a',
-        href: '#',
-        //onclick: actions.selectSubject('l.type.' + subject.type),
-        onclick: function(){
-          console.log('test');
-        },
-        text: subject.type
-      },
-      ', located in ',
-      container.type,
-      ' ',
-      container.name
-    ],
-    contains: [],
-    info: {
-      type: subject.type,
-      characteristics: subject.info
-    },
-    subject: subject
+        tag: 'h1',
+        text: subject.name
+      }
+    ]
   };
 
-  //subject.contains.forEach(function(containedSubjectID){
-  //  var containedSubject = state.db[containedSubjectID];
-  //  pageContent.contains.push('');
-  //});
 
-
-
-  var mkInfoBox = function(pageContent){
+  var mkInfoBox = function(){
     var infoBoxConfig = {
       tag: 'div',
       class: 'infoBox',
       children: [
         {
           tag: 'span',
-          text: 'Type: ' + pageContent.info.type
+          text: 'Type: ' + subject.type
         }
       ]
     };
 
-    if(pageContent.info.characteristics){
-      console.log(pageContent.info.characteristics);
-      _.forIn(pageContent.info.characteristics, function(value, name){
+    if(subject.info){
+      console.log(subject.info);
+      _.forIn(subject.info, function(value, name){
         infoBoxConfig.children.push({
           tag: 'div',
           text: _.upperFirst(name) +': '+ value
@@ -69,24 +47,40 @@ export default function(state, actions){
     return infoBoxConfig;
   };
 
-  var mkDescription = function(pageContent){
+  var mkDescription = function(){
     var description = {
       tag: 'div',
       class: 'section descriptionSection',
-      children: pageContent.description
+      children: [
+        subject.name,
+        ' is a ',
+        {
+          tag: 'a',
+          href: '#',
+          //onclick: actions.selectSubject('l.type.' + subject.type),
+          onclick: function(){
+            console.log('test');
+          },
+          text: subject.type
+        },
+        ', located in ',
+        container.type,
+        ' ',
+        container.name
+      ]
     };
 
     return description;
   };
 
-  var mkRaw = function(pageContent){
+  var mkRaw = function(){
     var raw = {
       tag: 'div',
       class: 'section rawSection',
       children: [
         {
           tag: 'pre',
-          text: JSON.stringify(pageContent, null, 4)
+          text: JSON.stringify(subject, null, 4)
         }
       ]
     };
@@ -94,29 +88,25 @@ export default function(state, actions){
     return raw;
   };
 
+  var mkPageContent = function(pageContent){
+    var pageContent = {
+      tag: 'div',
+      class: 'pageBody',
+      children: [
+        mkDescription(),
+        mkRaw()
+      ]
+    };
+    return pageContent;
+  };
+
   var pageConfig = {
     tag: 'div',
     class: 'infoPage',
     children: [
-      {
-        tag: 'div',
-        class: 'pageTitleBar',
-        children: [
-          {
-            tag: 'h1',
-            text: pageContent.title
-          }
-        ]
-      },
-      {
-        tag: 'div',
-        class: 'pageBody',
-        children: [
-          mkDescription(pageContent),
-          mkRaw(pageContent)
-        ]
-      },
-      mkInfoBox(pageContent)
+      pageTitle,
+      mkPageContent(),
+      mkInfoBox()
     ]
   };
 

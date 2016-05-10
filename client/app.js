@@ -28,6 +28,7 @@ if( selectedSubject ){
 
 store.subscribe(function(){
   var state = store.getState();
+  window.state = state; // DEVMODE
   console.log(state);
 
   sessionStorage.setItem('selectedSubject', state.ui.selectedSubject);

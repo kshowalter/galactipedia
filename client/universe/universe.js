@@ -1,6 +1,6 @@
 
 var mkItem = function(state, spec){
-  var containerId = spec._id.split('.').slice(-2,-1);
+  var containerId = spec._id.split('.').slice(0,-1).join('.');
   var item = {
     _id: spec._id,
     containerId: containerId,

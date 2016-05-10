@@ -14,14 +14,25 @@ var initState = mkInitState(seed);
 
 var store = createStore(reducer, initState);
 
+import Actions from './actions';
+var actions = Actions(store);
+
 import View from './view';
-var view = View(store);
+var view = View(store, actions);
+
+var selectedSubject = sessionStorage.getItem('selectedSubject');
+if( selectedSubject ){
+  actions.selectSubject(selectedSubject);
+}
 
 
 store.subscribe(function(){
-  console.log( store.getState() );
-  view.update();
+  var state = store.getState();
+  console.log(state);
 
+  sessionStorage.setItem('selectedSubject', state.ui.selectedSubject);
+
+  view.update();
 });
 
 

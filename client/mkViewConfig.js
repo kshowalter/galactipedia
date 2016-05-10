@@ -1,5 +1,4 @@
 import createSubjectPageContent from './createSubjectPageContent';
-import mkSubjectPageConfig from './mkSubjectPageConfig';
 
 var test = function(input){
   console.log('test', input);
@@ -13,7 +12,7 @@ var selectSubject = function(e){
 };
 
 
-var mkTree = function mkTree(state, itemId){
+var mkTree = function mkTree(state, itemId, actions){
   var item = state.db[itemId];
   var domconfig = {
     tag: 'span',
@@ -23,7 +22,7 @@ var mkTree = function mkTree(state, itemId){
         tag: 'span',
         class: 'itemTitleBar' + ' itemType' + _.upperFirst(item.type),
         onclick: function(){
-          test(itemId);
+          actions.selectSubject(itemId);
         },
         children: [
           {
@@ -65,7 +64,7 @@ var mkTree = function mkTree(state, itemId){
       children: []
     };
     item.contains.forEach(function(containedItemId){
-      itemContent.children.push( mkTree(state, containedItemId) );
+      itemContent.children.push( mkTree(state, containedItemId, actions) );
     });
     domconfig.children.push(itemContent);
   }
@@ -73,27 +72,40 @@ var mkTree = function mkTree(state, itemId){
 };
 
 
-
-
-
-
-export default function(state, dispatch){
-  var universe = state.universe;
-
-  var tree = {
+var toolBar = function(){
+  var toolBarConfig = {
     tag: 'div',
-    class: 'subjectTree',
+    class: 'toolBar',
     children: [
-      mkTree(state, 'u')
+      {
+        tag: 'span',
+        class: 'title',
+        text: 'Universipedia'
+      }
     ]
   };
+
+  return toolBarConfig;
+};
+
+
+
+export default function(state, actions){
+
+  //var tree = {
+  //  tag: 'div',
+  //  class: 'subjectTree',
+  //  children: [
+  //    mkTree(state, 'u', actions)
+  //  ]
+  //};
 
 
   var subjectPage = {
     tag: 'div',
     class: 'subjectPage',
     children: [
-      mkSubjectPageConfig( createSubjectPageContent(state) )
+      createSubjectPageContent(state, actions)
     ]
   };
 
@@ -101,7 +113,8 @@ export default function(state, dispatch){
     tag: 'div',
     class: 'page',
     children: [
-      tree,
+      //tree,
+      toolBar(),
       subjectPage
     ]
   };

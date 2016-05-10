@@ -1,3 +1,15 @@
+var mkPageLink = function(_id, text, actions){
+  return {
+    tag: 'a',
+    href: '#',
+    onclick: function(){
+      //console.log(_id);
+      actions.selectSubject(_id);
+    },
+    text: text
+  };
+};
+
 export default function(state, actions){
   var subjectId = state.ui.selectedSubject;
   var subject = state.db[subjectId];
@@ -59,14 +71,14 @@ export default function(state, actions){
           href: '#',
           //onclick: actions.selectSubject('l.type.' + subject.type),
           onclick: function(){
-            console.log('test');
+            console.log(subject.type);
           },
           text: subject.type
         },
         ', located in ',
         container.type,
         ' ',
-        container.name
+        mkPageLink( container._id, container.name, actions)
       ]
     };
 
@@ -88,12 +100,34 @@ export default function(state, actions){
     return raw;
   };
 
-  var mkPageContent = function(pageContent){
+  var mkContentList = function(){
+    var contentList = {
+      tag: 'ul',
+      class: 'section rawSection',
+      children: []
+    };
+
+    subject.contains.forEach(function(containedSubjectID){
+      contentList.children.push({
+        tag: 'li',
+        children: [
+          state.db[containedSubjectID].type,
+          ' ',
+          mkPageLink( containedSubjectID, state.db[containedSubjectID].name, actions)
+        ]
+      });
+    });
+
+    return contentList;
+  };
+
+  var mkPageContent = function(){
     var pageContent = {
       tag: 'div',
       class: 'pageBody',
       children: [
         mkDescription(),
+        mkContentList(),
         mkRaw()
       ]
     };

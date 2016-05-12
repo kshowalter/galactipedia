@@ -100,11 +100,23 @@ export default function(state, actions){
     return raw;
   };
 
+
+
+  /**
+   * var - Makes CDOM config object: List of contained locations.
+   *
+   * @return {object} config List of contained locations for current location subject   
+   */
   var mkContentList = function(){
+    if( subject.contains.length === 0 ){
+      return undefined;
+    }
+
     var contentList = {
       tag: 'ul',
       class: 'section rawSection',
-      children: []
+      children: [
+      ]
     };
 
     subject.contains.forEach(function(containedSubjectID){
@@ -118,7 +130,16 @@ export default function(state, actions){
       });
     });
 
-    return contentList;
+    return {
+      tag: 'div',
+      children: [
+        {
+          tag: 'div',
+          text: `This ${subject.type} contains:`
+        },
+        contentList
+      ]
+    };
   };
 
   var mkPageContent = function(){

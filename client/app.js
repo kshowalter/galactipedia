@@ -14,18 +14,6 @@ var createStore = require('redux').createStore;
 
 var seed = 'PhoebeWillow';
 
-/**
- * Creates an instance of Circle.
- *
- * @constructor
- * @this {Circle}
- * @param {number} r The desired radius of the circle.
- */
-function Circle(r) {
-  /** @private */ this.radius = r;
-  /** @private */ this.circumference = 2 * Math.PI * r;
-}
-
 
 /** @module */
 import mkInitState from './mkInitState';
@@ -40,8 +28,8 @@ import Actions from './actions';
 var actions = Actions(store);
 
 /** @module view */
-var View = './view';
-//import View from './view';
+//var View = require('./view');
+import View from './view';
 
 var view = View(store, actions);
 

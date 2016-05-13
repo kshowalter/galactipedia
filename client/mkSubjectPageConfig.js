@@ -39,7 +39,7 @@ export default function(state, actions){
       class: 'infoBox',
       children: [
         {
-          tag: 'span',
+          tag: 'div',
           text: 'Type: ' + subject.type
         }
       ]
@@ -105,7 +105,7 @@ export default function(state, actions){
   /**
    * var - Makes CDOM config object: List of contained locations.
    *
-   * @return {object} config List of contained locations for current location subject   
+   * @return {object} config List of contained locations for current location subject
    */
   var mkContentList = function(){
     if( subject.contains.length === 0 ){
@@ -147,9 +147,16 @@ export default function(state, actions){
       tag: 'div',
       class: 'pageBody',
       children: [
-        mkDescription(),
-        mkContentList(),
-        mkRaw()
+        mkInfoBox(),
+        {
+          tag: 'div',
+          class: 'mainPageBody',
+          children: [
+            mkDescription(),
+            mkContentList(),
+            mkRaw()
+          ]
+        }
       ]
     };
     return pageContent;
@@ -160,8 +167,7 @@ export default function(state, actions){
     class: 'infoPage',
     children: [
       pageTitle,
-      mkPageContent(),
-      mkInfoBox()
+      mkPageContent()
     ]
   };
 

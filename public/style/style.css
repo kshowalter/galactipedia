@@ -38,6 +38,10 @@ body{
 
 }
 
+.mainPageBody{
+  display: block;
+}
+
 .infoBox{
   border: 1px solid #aaa;
   border-spacing: 3px;

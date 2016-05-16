@@ -4,12 +4,13 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    app: ['./client/app.js']
+    index: ['./client/app.js'],
+    test: ['./client/test.js']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
-    filename: 'index.js'
+    filename: '[name].js'
   },
 
   module: {

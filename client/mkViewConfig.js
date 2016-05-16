@@ -92,7 +92,7 @@ export default function(state, actions){
   //  tag: 'div',
   //  class: 'subjectTree',
   //  children: [
-  //    mkTree(state, 'u', actions)
+  //    mkTree(state, 'l', actions)
   //  ]
   //};
 

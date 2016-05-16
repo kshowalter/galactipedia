@@ -1,3 +1,7 @@
+var mapInfo = {
+  solDistance: 27200 // light-years
+};
+
 
 var mkItem = function(state, spec){
   var containerId = spec._id.split('.').slice(0,-1).join('.');
@@ -157,7 +161,7 @@ create.universe = function(state, _id){
 /////////////////////////////////////////////////
 export default function(state){
 
-  state = create['universe'](state, 'u');
+  state = create['universe'](state, 'l');
 
 
   return state;

@@ -5,8 +5,8 @@ export default function(seed) {
     chance: new Chance(seed),
     db: [],
     ui: {
-      treeFocus: 'u',
-      selectedSubject: 'u'
+      treeFocus: 'l',
+      selectedSubject: 'l'
     }
   };
 

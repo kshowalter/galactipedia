@@ -5,9 +5,15 @@
  * @version 0.1.0
  */
 
+
+
+
 import _ from 'lodash';
 
 import Chance from 'chance';
+
+import router from './router';
+
 
 var reducer = require('./reducer');
 var createStore = require('redux').createStore;
@@ -38,6 +44,7 @@ if( selectedSubject ){
   actions.selectSubject(selectedSubject);
 }
 
+router(actions);
 
 /** Anonymous function that runs when the store is updated. */
 store.subscribe(function(){
@@ -55,7 +62,6 @@ store.subscribe(function(){
 store.dispatch({
   type: 'init'
 });
-
 
 
 

@@ -3,8 +3,9 @@ var mkPageLink = function(_id, text, actions){
     tag: 'a',
     href: '#',
     onclick: function(){
-      //console.log(_id);
-      actions.selectSubject(_id);
+      var subjectID = _id;
+      window.location.hash = '/' + subjectID;
+      return false;
     },
     text: text
   };
@@ -13,6 +14,7 @@ var mkPageLink = function(_id, text, actions){
 export default function(state, actions){
   var subjectId = state.ui.selectedSubject;
   var subject = state.db[subjectId];
+
   var container = state.db[subject.containerId];
   if( !container ){
     container = {

@@ -3,6 +3,10 @@ body{
 
 }
 
+.link{
+  color: #0018bb;
+}
+
 .page{
   position: relative;
 }

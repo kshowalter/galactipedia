@@ -80,7 +80,10 @@ export default function(state, actions){
         ', located in ',
         container.type,
         ' ',
-        mkPageLink( container._id, container.name, actions)
+        mkPageLink( container._id, container.name, actions),
+        '. ',
+        'It\'s catalog ID is: ',
+        subject._id
       ]
     };
 

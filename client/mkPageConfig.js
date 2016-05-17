@@ -1,3 +1,4 @@
+import appInfo from './app';
 import mkSubjectPageConfig from './mkSubjectPageConfig';
 import mkListPageConfig from './mkListPageConfig';
 
@@ -8,8 +9,8 @@ export default function(state, actions){
   if( subject === undefined ){
     console.log('subject not found');
     setTimeout( function(){
-      actions.selectSubject('l');
-    }, 3000);    
+      window.location.hash = appInfo.defaultPage;
+    }, 3000);
     return {
       tag: 'div',
       text: 'page not found'

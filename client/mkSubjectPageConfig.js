@@ -68,15 +68,7 @@ export default function(state, actions){
       children: [
         subject.name,
         ' is a ',
-        {
-          tag: 'a',
-          href: '#',
-          //onclick: actions.selectSubject('l.type.' + subject.type),
-          onclick: function(){
-            console.log(subject.type);
-          },
-          text: subject.type
-        },
+        subject.type,
         ', located in ',
         container.type,
         ' ',
@@ -91,13 +83,19 @@ export default function(state, actions){
   };
 
   var mkRaw = function(){
+    var subjectEdited = Object.assign({}, subject);
+    if( subjectEdited.console && subjectEdited.console.chance && subjectEdited.console.chance ){
+      console.log(subject, subject.console.chance.seed);
+      subjectEdited.console.chance = subject.console.chance.seed;
+    }
+
     var raw = {
       tag: 'div',
       class: 'section rawSection',
       children: [
         {
           tag: 'pre',
-          text: JSON.stringify(subject, null, 4)
+          text: JSON.stringify(subjectEdited, null, 4)
         }
       ]
     };
@@ -113,7 +111,7 @@ export default function(state, actions){
    * @return {object} config List of contained locations for current location subject
    */
   var mkContentList = function(){
-    if( subject.contains.length === 0 ){
+    if( subject.contains === undefined || subject.contains.length === 0 ){
       return undefined;
     }
 

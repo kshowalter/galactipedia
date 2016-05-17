@@ -1,8 +1,8 @@
-import createUniverse from './universe/universe';
+import mkUniverse from './universe/universe';
 
 export default function(seed) {
   var initState = {
-    chance: new Chance(seed),
+    seed: seed,
     db: [],
     ui: {
       treeFocus: 'l',
@@ -10,7 +10,7 @@ export default function(seed) {
     }
   };
 
-  initState = createUniverse(initState);
+  initState = mkUniverse(initState);
 
   return initState;
 }

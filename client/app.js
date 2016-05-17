@@ -11,6 +11,7 @@
 import _ from 'lodash';
 
 import Chance from 'chance';
+//window.Chance = Chance;
 
 import router from './router';
 
@@ -45,6 +46,11 @@ if( selectedSubject ){
 }
 
 router(actions);
+
+export default {
+  defaultPage: '/l.1'
+
+};
 
 /** Anonymous function that runs when the store is updated. */
 store.subscribe(function(){

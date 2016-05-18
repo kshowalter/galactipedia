@@ -13,6 +13,9 @@ import _ from 'lodash';
 import Chance from 'chance';
 //window.Chance = Chance;
 
+import Kdb from './kdb';
+window.Kdb = Kdb;
+
 import router from './router';
 
 

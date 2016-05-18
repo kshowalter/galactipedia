@@ -1,5 +1,4 @@
-import * as mkStar from './star';
-import * as mkPlanet from './planet';
+import mkLocation from '../mkLocation';
 
 
 export function summarize(state, request){
@@ -10,7 +9,7 @@ export function summarize(state, request){
     _id: request._id,
     containerId: containerId,
     type: 'system',
-    name: chance.word(),
+    name: _.upperFirst(chance.word()),
     info: {
       numPlanets: chance.natural({min:1,max:10})
     },
@@ -24,25 +23,30 @@ export function summarize(state, request){
 
   var numStars = 1;
   for( var i = 1; i <= numStars; i++){
-    var containedItemId = summary._id +'.'+i;
+    var containedItemId = summary._id +'.'+ summary.contains.length;
     var name = summary.name;
     if( numStars !== 1 ){
       name = summary.name +' '+ i;
     }
-    state = mkStar.summarize(state, {
+    state = mkLocation['star'].summarize(state, {
       _id: containedItemId,
       name: name,
-      classification: chance.pickone(mkStar.info.classifications)
+      info: {
+        classification: chance.pickone(_.keys(mkLocation['star'].info.classifications))
+      }
     });
     summary.contains.push(containedItemId);
   }
 
   var numPlanets = chance.natural({min:1,max:12});
   for( var i = 1; i <= numPlanets; i++){
-    var containedItemId = summary._id +'.'+i;
-    state = mkPlanet.summarize(state, {
+    var containedItemId = summary._id +'.'+ summary.contains.length;
+    state = mkLocation['planet'].summarize(state, {
       _id: containedItemId,
-      classification: chance.pickone(mkPlanet.info.classifications)
+      info: {
+        classification: chance.pickone(_.keys(mkLocation['planet'].info.classifications)),
+        distance: chance.natural({min:0.1,max:33})
+      }
     });
     summary.contains.push(containedItemId);
   }
@@ -61,7 +65,7 @@ export  function addDetails(state, _id){
 
   //for( var i = 1; i <= summary.info.numPlantes; i++){
   //  var containedItemId = details._id +'.'+i;
-  //  state = mkPlanet.summarize(state, {
+  //  state = mkLocation['planet'].summarize(state, {
   //    _id: containedItemId
   //  });
   //  details.contains.push(containedItemId);

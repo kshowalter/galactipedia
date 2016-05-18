@@ -5,7 +5,7 @@ var mapInfo = {
 
 
 
-import * as mkSystem from './system';
+import mkLocation from './mkLocation';
 
 /////////////////////////////////////////////////
 export default function(state){
@@ -14,15 +14,18 @@ export default function(state){
 
   var reality = {
     _id: 'l',
-    type: 'reality',
+    type: 'Universe',
+    name: 'Prime Reality',
     contains: []
   };
   state.db[reality._id] = reality;
 
   var galaxy = {
     _id: 'l.1',
+    containerId: 'l',
     type: 'galaxy',
     name: 'Origin',
+    info: {},
     contains: [],
     console: {}
   };
@@ -32,7 +35,7 @@ export default function(state){
 
   for( var i = 2; i <= 42; i++ ){
     var containedItemId = 'l.1.' + i;
-    state = mkSystem.summarize(state, {
+    state = mkLocation['system'].summarize(state, {
       _id: containedItemId
     });
     galaxy.contains.push(containedItemId);

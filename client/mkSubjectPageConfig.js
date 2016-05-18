@@ -18,7 +18,7 @@ export default function(state, actions){
   var container = state.db[subject.containerId];
   if( !container ){
     container = {
-      name: 'reality'
+      name: 'e3xistence'
     };
   }
 
@@ -123,12 +123,20 @@ export default function(state, actions){
     };
 
     subject.contains.forEach(function(containedSubjectID){
+      var subject = state.db[containedSubjectID];
+      var classification = subject.info.classification;
+      if( classification ) {
+        classification = classification + ' ';
+      }
+      console.log(classification);
+
       contentList.children.push({
         tag: 'li',
         children: [
+          classification,
           state.db[containedSubjectID].type,
           ' ',
-          mkPageLink( containedSubjectID, state.db[containedSubjectID].name, actions)
+          mkPageLink( containedSubjectID, subject.name, actions)
         ]
       });
     });

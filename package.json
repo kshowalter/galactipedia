@@ -12,6 +12,8 @@
   "dependencies": {
     "chance": "~1.0.2",
     "font-awesome": "~4.6.1",
+    "kstore": "git+https://github.com/kshowalter/kstore.git",
+    "configdom": "git+https://github.com/kshowalter/configdom.git",
     "lodash": "^4.11.2",
     "redux": "~3.5.2"
   },

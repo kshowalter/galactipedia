@@ -6,7 +6,7 @@
  */
 
 /** @module */
-import ConfigDOM  from 'configDOM';
+import ConfigDOM  from 'configdom';
 
 var configDOM = ConfigDOM('#content');
 

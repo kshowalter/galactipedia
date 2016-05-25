@@ -19,7 +19,7 @@ var seed = 'PhoebeWillow';
 
 var chance = new Chance(seed);
 
-import ConfigDOM  from 'configDOM';
+import ConfigDOM  from 'configdom';
 
 var configDOM = ConfigDOM('#content');
 

@@ -76,7 +76,7 @@ var toolBar = function(){
       {
         tag: 'span',
         class: 'title',
-        text: 'Universipedia'
+        text: 'Galactipedia'
       }
     ]
   };

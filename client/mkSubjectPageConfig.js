@@ -48,7 +48,7 @@ export default function(state, actions){
     };
 
     if(subject.info){
-      console.log(subject.info);
+      //console.log(subject.info);
       _.forIn(subject.info, function(value, name){
         infoBoxConfig.children.push({
           tag: 'div',
@@ -85,7 +85,7 @@ export default function(state, actions){
   var mkRaw = function(){
     var subjectEdited = Object.assign({}, subject);
     if( subjectEdited.console && subjectEdited.console.chance && subjectEdited.console.chance ){
-      console.log(subject, subject.console.chance.seed);
+      //console.log(subject, subject.console.chance.seed);
       subjectEdited.console.chance = subject.console.chance.seed;
     }
 
@@ -128,7 +128,7 @@ export default function(state, actions){
       if( classification ) {
         classification = classification + ' ';
       }
-      console.log(classification);
+      //console.log(classification);
 
       contentList.children.push({
         tag: 'li',

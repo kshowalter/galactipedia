@@ -105,14 +105,9 @@ export default function(state, actions){
     ]
   };
 
-  var domConfig = {
-    tag: 'div',
-    class: 'page',
-    children: [
-      //tree,
-      toolBar(),
-      subjectPage
-    ]
-  };
+  var domConfig = [
+    toolBar(),
+    subjectPage
+  ];
   return domConfig;
 }

@@ -1,7 +1,7 @@
 // http://www.atlasoftheuniverse.com/startype.html
 import Kstore from 'kstore';
 
-export const info = {
+export const typeInfo = {
   // https://en.wikipedia.org/wiki/Stellar_classification
   classifications: Kstore([
     {
@@ -74,24 +74,13 @@ export const info = {
 
 
 
-export function summarize(state, request){
-  //var chance = new Chance( state.seed + request._id);
+export function summarize(state){
+  this.name = _.upperFirst(this._console.chance.word());
 
-  var containerId = request._id.split('.').slice(0,-1).join('.');
-  var summary = {
-    _id: request._id,
-    containerId: containerId,
-    type: 'star',
-    name: request.name,
-    info: request.info
-  };
-  var classificationInfo = info.classifications.findOne({
-    classification: summary.info.classification
-  });
-  _.keys(classificationInfo).forEach(function(name){
-    summary.info[name] = classificationInfo[name];
-  });
-  state.db[summary._id] = summary;
+  return this;
+}
 
-  return state;
+export function addDetails(state){
+
+  return this;
 }

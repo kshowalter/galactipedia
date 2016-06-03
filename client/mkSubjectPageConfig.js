@@ -84,10 +84,14 @@ export default function(state, actions){
 
   var mkRaw = function(){
     var subjectEdited = Object.assign({}, subject);
-    if( subjectEdited.console && subjectEdited.console.chance && subjectEdited.console.chance ){
-      //console.log(subject, subject.console.chance.seed);
-      subjectEdited.console.chance = subject.console.chance.seed;
+    if( subjectEdited._console && subjectEdited._console.chance  ){
+      subjectEdited._console.chance = subject._console.chance.seed;
+    } else {
+      subjectEdited._console = {
+        chance: 'no chance'
+      };
     }
+    subjectEdited._spec = undefined;
 
     var raw = {
       tag: 'div',

@@ -1,11 +1,13 @@
-var mapInfo = {
-  solDistance: 27200 // light-years
+import mkLocation from './mkLocation';
+
+import Kstore from 'kstore';
+
+export const typeInfo = {
   // https://en.wikipedia.org/wiki/Orion_Arm#/media/File:Milky_Way_Arms_ssc2008-10.svg
+  solDistance: 27200 // light-years
 };
 
 
-
-import mkLocation from './mkLocation';
 
 /////////////////////////////////////////////////
 export default function(state){
@@ -27,17 +29,19 @@ export default function(state){
     name: 'Origin',
     info: {},
     contains: [],
-    console: {}
+    _console: {}
   };
-  galaxy.console.chance = new Chance( state.seed + galaxy._id);
+  galaxy._console.chance = new Chance( state.seed + galaxy._id);
   state.db[reality._id].contains.push(galaxy._id);
   state.db[galaxy._id] = galaxy;
 
   for( var i = 2; i <= 42; i++ ){
     var containedItemId = 'l.1.' + i;
-    state = mkLocation['system'].summarize(state, {
+    state.db[containedItemId] = mkLocation(state, {
+      type: 'system',
       _id: containedItemId
     });
+
     galaxy.contains.push(containedItemId);
 
   }

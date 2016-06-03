@@ -1,79 +1,90 @@
-export const info = {
-  // https://en.wikipedia.org/wiki/Stellar_classification
-  classifications: {
-    'Carbon': {
+import Kstore from 'kstore';
+
+export const typeInfo = {
+  classifications: Kstore([
+    {
+      classification: 'Carbon',
       category: 'Terrestrial'
     },
-    'Coreless': {
+    {
+      classification: 'Coreless',
       category: 'Terrestrial'
     },
-    'Desert': {
+    {
+      classification: 'Desert',
       category: 'Terrestrial'
     },
-    'Dwarf': {
+    {
+      classification: 'Dwarf',
       category: 'Terrestrial'
     },
-    'Ice': {
+    {
+      classification: 'Ice',
       category: 'Terrestrial'
     },
-    'Iron': {
+    {
+      classification: 'Iron',
       category: 'Terrestrial'
     },
-    'Lava': {
+    {
+      classification: 'Lava',
       category: 'Terrestrial'
     },
-    'Mega-Earth': {
+    {
+      classification: 'Mega-Earth',
       category: 'Terrestrial'
     },
-    'Ocean': {
+    {
+      classification: 'Ocean',
       category: 'Terrestrial'
     },
-    'Sub-Earth': {
+    {
+      classification: 'Sub-Earth',
       category: 'Terrestrial'
     },
-    'Super-Earth': {
+    {
+      classification: 'Super-Earth',
       category: 'Terrestrial'
     },
-    'Gas dwarf': {
+    {
+      classification: 'Gas dwarf',
       category: 'Gaseous'
     },
-    'Helium': {
+    {
+      classification: 'Helium',
       category: 'Gaseous'
     },
-    'Hot Jupiter': {
+    {
+      classification: 'Hot Jupiter',
       category: 'Gaseous'
     },
-    'Hot Neptune': {
+    {
+      classification: 'Hot Neptune',
       category: 'Gaseous'
     },
-    'Ice giant': {
+    {
+      classification: 'Ice giant',
       category: 'Gaseous'
     },
-    'Mini-Neptune': {
+    {
+      classification: 'Mini-Neptune',
       category: 'Gaseous'
     },
-    'Super-Jupiter': {
+    {
+      classification: 'Super-Jupiter',
       category: 'Gaseous'
     }
-  }
+  ])
 };
 
 
-export function summarize(state, request){
-  var chance = new Chance( state.seed + request._id);
+export function summarize(state){
+  this.name = _.upperFirst(this._console.chance.word());
 
-  var containerId = request._id.split('.').slice(0,-1).join('.');
-  var summary = {
-    _id: request._id,
-    containerId: containerId,
-    type: 'planet',
-    name: _.upperFirst(chance.word()),
-    info: request.info
-  };
-  _.keys(info.classifications[summary.info.classification]).forEach(function(name){
-    summary.info[name] = info.classifications[summary.info.classification][name];
-  });
-  state.db[summary._id] = summary;
+  return this;
+}
 
-  return state;
+export function addDetails(state){
+
+  return this;
 }

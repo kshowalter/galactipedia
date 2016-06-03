@@ -1,58 +1,50 @@
 import mkLocation from '../mkLocation';
 
 
-export function summarize(state, request){
-  var chance = new Chance( state.seed + request._id);
+export function summarize(state){
+  this.name = _.upperFirst(this._console.chance.word());
 
-  var containerId = request._id.split('.').slice(0,-1).join('.');
-  var summary = {
-    _id: request._id,
-    containerId: containerId,
-    type: 'system',
-    name: _.upperFirst(chance.word()),
-    info: {
-      numPlanets: chance.natural({min:1,max:10})
-    },
-    console: {
-      chance: chance
-    },
-    contains: []
+  this.info.numPlanets = this._console.chance.natural({min:1,max:10});
+  this.info.numStars = 1;
 
-  };
-  state.db[summary._id] = summary;
-
-  var numStars = 1;
-  for( var i = 1; i <= numStars; i++){
-    var containedItemId = summary._id +'.'+ summary.contains.length;
-    var name = summary.name;
-    if( numStars !== 1 ){
-      name = summary.name +' '+ i;
+  for( var i = 1; i <= this.info.numStars; i++){
+    var name = this.name;
+    if( this.info.numStars !== 1 ){
+      name = this.name +' '+ i;
     }
-    state = mkLocation['star'].summarize(state, {
+
+    var containedItemId = this._id +'.'+ this.contains.length;
+    var star = state.db[containedItemId] = mkLocation(state, {
+      type: 'star',
       _id: containedItemId,
       name: name,
-      info: {
-        classification: chance.pickone(_.keys(mkLocation['star'].info.classifications))
-      }
+      info: {}
     });
-    summary.contains.push(containedItemId);
+    star.info.classification = this._console.chance.pickone(
+      star._spec.typeInfo.classifications.options('classification')
+    );
+
+    this.contains.push(containedItemId);
   }
 
-  var numPlanets = chance.natural({min:1,max:12});
-  for( var i = 1; i <= numPlanets; i++){
-    var containedItemId = summary._id +'.'+ summary.contains.length;
-    state = mkLocation['planet'].summarize(state, {
+  for( var i = 1; i <= this.info.numPlanets; i++){
+    var containedItemId = this._id +'.'+ this.contains.length;
+    var planet = state.db[containedItemId] = mkLocation(state, {
+      type: 'planet',
       _id: containedItemId,
-      info: {
-        classification: chance.pickone(_.keys(mkLocation['planet'].info.classifications)),
-        distance: chance.natural({min:0.1,max:33})
-      }
+      name: name,
+      info: {}
     });
-    summary.contains.push(containedItemId);
+    planet.info.classification = this._console.chance.pickone(
+      planet._spec.typeInfo.classifications.options('classification')
+    );
+    planet.info.distance = this._console.chance.natural({min:0.1,max:33});
+
+    this.contains.push(containedItemId);
   }
 
 
-  return state;
+  return this;
 }
 
 export  function addDetails(state, _id){
@@ -71,5 +63,5 @@ export  function addDetails(state, _id){
   //  details.contains.push(containedItemId);
   //}
 
-  return state;
+  return this;
 }

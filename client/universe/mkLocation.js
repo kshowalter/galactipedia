@@ -25,7 +25,8 @@ export default function(state, request){
       chance: chance
     },
     _spec: mkType[request.type],
-    contains: []
+    contains: [],
+    illustration: {}
   };
   location.summarize = mkType[request.type].summarize;
   location.addDetails = mkType[request.type].addDetails;

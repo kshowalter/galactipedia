@@ -15,7 +15,7 @@ import Chance from 'chance';
 
 import Kstore from 'kstore';
 
-
+import mkdrawing from 'mkdrawing';
 
 import router from './router';
 
@@ -60,7 +60,7 @@ export default {
 store.subscribe(function(){
   var state = store.getState();
   window.state = state; // DEVMODE
-  console.log(state);
+  console.log('State change: ', state);
 
   sessionStorage.setItem('selectedSubject', state.ui.selectedSubject);
 

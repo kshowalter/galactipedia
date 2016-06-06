@@ -43,6 +43,27 @@ export function summarize(state){
     this.contains.push(containedItemId);
   }
 
+  this.illustration.image = {
+    size: { w: 50, h: 50 },
+    scale: 10,
+    layer_attr: {
+
+    },
+    contains: [
+      {
+        type: 'circ',
+        x: 250,
+        y: 100,
+        d: 50
+      },
+      {
+        type: 'circ',
+        x: 250,
+        y: 200,
+        d: 10
+      }
+    ]
+  };
 
   return this;
 }

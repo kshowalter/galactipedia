@@ -68,7 +68,7 @@ var mkTree = function mkTree(state, itemId, actions){
 };
 
 
-var toolBar = function(){
+var toolBar = function(state){
   var toolBarConfig = {
     tag: 'div',
     class: 'toolBar',
@@ -80,7 +80,6 @@ var toolBar = function(){
       }
     ]
   };
-
   return toolBarConfig;
 };
 
@@ -106,7 +105,7 @@ export default function(state, actions){
   };
 
   var domConfig = [
-    toolBar(),
+    toolBar(state),
     subjectPage
   ];
   return domConfig;

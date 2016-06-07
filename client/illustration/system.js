@@ -1,14 +1,17 @@
-import mkdrawing from 'mkdrawing';
+//import mkdrawing from 'mkdrawing';
 
 export default function(state){
 
-  var d = mkdrawing({
-    size: {
-      w: 200,
-      h: 200
+  var svgConfig = {
+    tag: 'svg',
+    props: {
+      xmlns: 'http://www.w3.org/2000/svg',
+      width: '200',
+      height: '200',
+      viewBox: '0 0 200 200'
     },
-    scale: 1
-  });
+    contains: []
+  };
 
   var x,y,w,h;
 
@@ -16,7 +19,7 @@ export default function(state){
   h = 10;
   x = w/2;
   y = h/2;
-  d.add({
+  svgConfig.contains.push({
     type: 'rect',
     x: x,
     y: y,
@@ -28,7 +31,7 @@ export default function(state){
   h = 10;
   x = w/2;
   y = 100;
-  d.add({
+  svgConfig.contains.push({
     type: 'rect',
     x: x,
     y: y,
@@ -40,7 +43,7 @@ export default function(state){
   h = 10;
   x = w/2;
   y = 200 - h/2;
-  d.add({
+  svgConfig.contains.push({
     type: 'rect',
     x: x,
     y: y,
@@ -49,5 +52,5 @@ export default function(state){
   });
 
 
-  return d.mkSVG();
+  return svgConfig;
 }

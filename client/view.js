@@ -6,9 +6,9 @@
  */
 
 /** @module */
-import ConfigDOM  from 'configdom';
+import Specdom  from 'specdom';
 
-var configDOM = ConfigDOM('#content');
+var specdom = Specdom('#content');
 
 /** @module */
 import mkViewConfig from './mkViewConfig';
@@ -27,7 +27,7 @@ export default function(store, actions){
     update: function(){
       var state = this.store.getState();
       var viewConfig = mkViewConfig(state, actions);
-      configDOM.load(viewConfig);
+      specdom.load(viewConfig);
     }
   };
 

@@ -19,11 +19,11 @@ var seed = 'PhoebeWillow';
 
 var chance = new Chance(seed);
 
-import ConfigDOM  from 'configdom';
+import Specdom  from 'specdom';
 
-var configDOM = ConfigDOM('#content');
+var specdom = Specdom('#content');
 
-configDOM.load({
+specdom.load({
   tag: 'div',
   children: [
     {

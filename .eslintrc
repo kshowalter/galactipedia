@@ -24,14 +24,9 @@
     "browser": true
   },
   "extends": "eslint:recommended",
-
-  "parser": "babel-eslint",
   "globals": {
     "$": true,
     "_": true,
-    "moment": true,
-    "g": true,
-    "Chance": true
+    "module": true
   }
-
 }

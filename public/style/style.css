@@ -47,12 +47,14 @@ body{
 }
 
 .infoBox{
+  position: relative;
   border: 1px solid #aaa;
   border-spacing: 3px;
   background-color: #f9f9f9;
   color: black;
-  margin: 0.5em 0 0.5em 1em;
-  padding: 0.2em;
+  /* margin: 0.5em 0 0.5em 1em; */
+  margin-right: 10px
+  padding: 0.5em;
   float: right;
   clear: right;
   font-size: 88%;
@@ -110,18 +112,32 @@ body{
 
 
 
-.itemTypeGalaxy{
+.contentListItem{
+  display: block;
+  padding: 2px;
+  margin-top: 4px;
+  margin-left: 10px;
+  width: 300px;
+
+}
+
+
+.itemType_galaxy{
   background-color: #f5d7f6
 }
 
-.itemTypeSystem{
+.itemType_star{
+  background-color: #e7cba2
+}
+
+.itemType_system{
   background-color: #eecc99
 }
 
-.itemTypePlanet{
+.itemType_planet{
   background-color: #dddddd
 }
 
-.itemTypeFacility{
+.itemType_facility{
   background-color: #7a7a7a
 }

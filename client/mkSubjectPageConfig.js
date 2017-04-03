@@ -1,11 +1,13 @@
 var mkPageLink = function(_id, text, actions){
   return {
     tag: 'a',
-    href: '#',
-    onclick: function(){
-      var subjectID = _id;
-      window.location.hash = '/' + subjectID;
-      return false;
+    props: {
+      href: '#',
+      onclick: function(){
+        var subjectID = _id;
+        window.location.hash = '/' + subjectID;
+        return false;
+      },
     },
     text: text
   };
@@ -25,7 +27,9 @@ export default function(state, actions){
 
   var pageTitle = {
     tag: 'div',
-    class: 'pageTitleBar',
+    props: {
+      class: 'pageTitleBar',
+    },
     children: [
       {
         tag: 'h1',
@@ -38,7 +42,9 @@ export default function(state, actions){
   var mkInfoBox = function(){
     var infoBoxConfig = {
       tag: 'div',
-      class: 'infoBox',
+      props: {
+        class: 'infoBox',
+      },
       children: [
         {
           tag: 'div',
@@ -64,7 +70,9 @@ export default function(state, actions){
   var mkDescription = function(){
     var description = {
       tag: 'div',
-      class: 'section descriptionSection',
+      props: {
+        class: 'section descriptionSection',
+      },
       children: [
         subject.name,
         ' is a ',
@@ -95,7 +103,9 @@ export default function(state, actions){
 
     var raw = {
       tag: 'div',
-      class: 'section rawSection',
+      props: {
+        class: 'section rawSection',
+      },
       children: [
         {
           tag: 'pre',
@@ -121,7 +131,9 @@ export default function(state, actions){
 
     var contentList = {
       tag: 'ul',
-      class: 'section rawSection',
+      props: {
+        class: 'section rawSection',
+      },
       children: [
       ]
     };
@@ -136,6 +148,9 @@ export default function(state, actions){
 
       contentList.children.push({
         tag: 'li',
+        props:{
+          class: 'contentListItem itemType_' + state.db[containedSubjectID].type,
+        },
         children: [
           classification,
           state.db[containedSubjectID].type,
@@ -160,12 +175,16 @@ export default function(state, actions){
   var mkPageContent = function(){
     var pageContent = {
       tag: 'div',
-      class: 'pageBody',
+      props: {
+        class: 'pageBody',
+      },
       children: [
         mkInfoBox(),
         {
           tag: 'div',
-          class: 'mainPageBody',
+          props: {
+            class: 'mainPageBody',
+          },
           children: [
             mkDescription(),
             mkContentList(),
@@ -179,7 +198,9 @@ export default function(state, actions){
 
   var pageConfig = {
     tag: 'div',
-    class: 'infoPage',
+    props: {
+      class: 'infoPage',
+    },
     children: [
       pageTitle,
       mkPageContent()

@@ -12,11 +12,15 @@ var mkTree = function mkTree(state, itemId, actions){
   var item = state.db[itemId];
   var domconfig = {
     tag: 'span',
-    class: 'itemNode',
+    props: {
+      class: 'itemNode',
+    },
     children: [
       {
         tag: 'span',
-        class: 'itemTitleBar' + ' itemType' + _.upperFirst(item.type),
+        props: {
+          class: 'itemTitleBar' + ' itemType' + _.upperFirst(item.type),
+        },
         onclick: function(){
           actions.selectSubject(itemId);
         },
@@ -33,13 +37,17 @@ var mkTree = function mkTree(state, itemId, actions){
   if( item.info ){
     var infoConfig = {
       tag: 'span',
-      class: 'itemInfoSection',
+      props: {
+        class: 'itemInfoSection',
+      },
       children: []
     };
     _.forIn(item.info, function(value, key){
       infoConfig.children.push({
         tag: 'span',
-        class: 'itemInfo',
+        props: {
+          class: 'itemInfo',
+        },
         text: key +': '+ value
       });
     });
@@ -49,14 +57,18 @@ var mkTree = function mkTree(state, itemId, actions){
   if( item.contains.length !== 0 ){
     domconfig.children.push({
       tag: 'span',
-      class: 'togleContains',
+      props: {
+        class: 'togleContains',
+      },
       onclick: function(){
         togleFold(itemId);
       }
     });
     var itemContent = {
       tag: 'span',
-      class: 'nodeContains',
+      props: {
+        class: 'nodeContains',
+      },
       children: []
     };
     item.contains.forEach(function(containedItemId){
@@ -71,11 +83,15 @@ var mkTree = function mkTree(state, itemId, actions){
 var toolBar = function(state){
   var toolBarConfig = {
     tag: 'div',
-    class: 'toolBar',
+    props: {
+      class: 'toolBar',
+    },
     children: [
       {
         tag: 'span',
-        class: 'title',
+        props: {
+          class: 'title',
+        },
         text: 'Galactipedia'
       }
     ]
@@ -89,7 +105,9 @@ export default function(state, actions){
 
   //var tree = {
   //  tag: 'div',
-  //  class: 'subjectTree',
+  //  props: {
+  //    class: 'subjectTree',
+  //  },
   //  children: [
   //    mkTree(state, 'l', actions)
   //  ]
@@ -98,7 +116,9 @@ export default function(state, actions){
 
   var subjectPage = {
     tag: 'div',
-    class: 'subjectPage',
+    props: {
+      class: 'subjectPage',
+    },
     children: [
       mkPageConfig(state, actions)
     ]
@@ -108,5 +128,6 @@ export default function(state, actions){
     toolBar(state),
     subjectPage
   ];
+
   return domConfig;
 }

@@ -19,6 +19,12 @@ import mkdrawing from 'mkdrawing';
 
 import router from './router';
 
+import f from './functions';
+
+var global = window || global;
+
+global.logger = console.log;
+global.f = f;
 
 var reducer = require('./reducer');
 var createStore = require('redux').createStore;
@@ -73,6 +79,8 @@ store.dispatch({
   type: 'init'
 });
 
-
+window.onresize = function(){
+  //console.log(window.innerWidth);
+};
 
 console.log('done');

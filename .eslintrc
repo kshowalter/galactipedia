@@ -31,6 +31,9 @@
   "globals": {
     "$": true,
     "_": true,
-    "module": true
+    "module": true,
+    "global": true,
+    "logger": true,
+    "f": true
   }
 }

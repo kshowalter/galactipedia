@@ -1,3 +1,19 @@
+import mkTree from './mkTree';
+
+var sectionWrap = function(wrappedSpecObject){
+  return {
+    tag: 'div',
+    props: {
+      class: 'section',
+    },
+    children: [
+      wrappedSpecObject,
+    ],
+  };
+};
+
+
+
 var mkPageLink = function(_id, text, actions){
   return {
     tag: 'a',
@@ -58,7 +74,7 @@ export default function(state, actions){
       _.forIn(subject.info, function(value, name){
         infoBoxConfig.children.push({
           tag: 'div',
-          text: _.upperFirst(name) +': '+ value
+          text: f.pretty_name(name) +': '+ value
         });
 
       });
@@ -71,7 +87,7 @@ export default function(state, actions){
     var description = {
       tag: 'div',
       props: {
-        class: 'section descriptionSection',
+        class: 'descriptionSection',
       },
       children: [
         subject.name,
@@ -104,7 +120,7 @@ export default function(state, actions){
     var raw = {
       tag: 'div',
       props: {
-        class: 'section rawSection',
+        class: 'rawSection',
       },
       children: [
         {
@@ -132,7 +148,7 @@ export default function(state, actions){
     var contentList = {
       tag: 'ul',
       props: {
-        class: 'section rawSection',
+        class: 'contentList',
       },
       children: [
       ]
@@ -149,7 +165,7 @@ export default function(state, actions){
       contentList.children.push({
         tag: 'li',
         props:{
-          class: 'contentListItem itemType_' + state.db[containedSubjectID].type,
+          class: 'contentItem contentItem_' + state.db[containedSubjectID].type,
         },
         children: [
           classification,
@@ -161,7 +177,7 @@ export default function(state, actions){
     });
 
     return {
-      tag: 'div',
+      tag: 'span',
       children: [
         {
           tag: 'div',
@@ -176,36 +192,25 @@ export default function(state, actions){
     var pageContent = {
       tag: 'div',
       props: {
-        class: 'pageBody',
+        class: 'infoPage pageBody',
       },
-      children: [
-        mkInfoBox(),
-        {
-          tag: 'div',
-          props: {
-            class: 'mainPageBody',
-          },
-          children: [
-            mkDescription(),
-            mkContentList(),
-            mkRaw()
-          ]
-        }
-      ]
+      children: []
     };
+
+    [
+      pageTitle,
+      mkDescription(),
+      mkInfoBox(),
+      mkContentList(),
+      //mkTree(state, subject._id, actions),
+      mkRaw(),
+    ].forEach(function(sectionSpec){
+      pageContent.children.push( sectionWrap(sectionSpec) );
+    });
+
     return pageContent;
   };
 
-  var pageConfig = {
-    tag: 'div',
-    props: {
-      class: 'infoPage',
-    },
-    children: [
-      pageTitle,
-      mkPageContent()
-    ]
-  };
 
-  return pageConfig;
+  return mkPageContent();
 }

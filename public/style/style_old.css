@@ -1,0 +1,143 @@
+body{
+  background-color: #eeeeee;
+
+}
+
+.link{
+  color: #0018bb;
+}
+
+.page{
+  position: relative;
+}
+
+.toolBar{
+  background-color: #c9e2ff;
+  border-bottom: 3px solid #93c5ff;
+}
+
+
+/*
+.subjectTree{
+  position: absolute;
+  left: 0px;
+  width: 300px;
+}
+*/
+
+.subjectPage{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.pageTitleBar{
+  border-bottom: 2px solid #aaa;
+  margin-bottom: 20px
+}
+
+.section{
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+}
+
+.mainPageBody{
+  display: block;
+}
+
+.infoBox{
+  position: relative;
+  border: 1px solid #aaa;
+  border-spacing: 3px;
+  background-color: #f9f9f9;
+  color: black;
+  /* margin: 0.5em 0 0.5em 1em; */
+  margin-right: 10px
+  padding: 0.5em;
+  float: right;
+  clear: right;
+  font-size: 88%;
+  line-height: 1.5em;
+}
+
+
+
+
+.itemNode {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.itemTitleBar{
+  background-color: #d0d0d0;
+  display: block;
+  padding: 3px;
+
+}
+
+.itemInfoSection{
+  display: block;
+  background-color: #dddddd;
+  padding: 3px;
+  margin-top: 0px;
+  margin-left: 10px;
+
+}
+
+.itemInfo{
+  display: block;
+
+}
+
+.togleContains{
+  display: block;
+  border-top: 3px solid #dddddd;
+  background-color: #E3E3E3;
+  border-bottom: 3px solid #E8E8E8;
+  height: 9px;
+
+  margin-top: 2px;
+  margin-left: 10px;
+
+
+}
+
+.nodeContains{
+  display: block;
+  margin-left: 10px;
+}
+
+
+
+
+.contentListItem{
+  display: block;
+  padding: 2px;
+  margin-top: 4px;
+  margin-left: 10px;
+  width: 300px;
+
+}
+
+
+.contentItem_galaxy{
+  background-color: #f5d7f6
+}
+
+.contentItem_star{
+  background-color: #e7cba2
+}
+
+.contentItem_system{
+  background-color: #eecc99
+}
+
+.contentItem_planet{
+  background-color: #dddddd
+}
+
+.contentItem_facility{
+  background-color: #7a7a7a
+}

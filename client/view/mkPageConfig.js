@@ -1,4 +1,4 @@
-import appInfo from './app';
+import appInfo from '../app';
 import mkSubjectPageConfig from './mkSubjectPageConfig';
 import mkListPageConfig from './mkListPageConfig';
 

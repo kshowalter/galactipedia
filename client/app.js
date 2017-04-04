@@ -6,8 +6,6 @@
  */
 
 
-
-
 import _ from 'lodash';
 
 import Chance from 'chance';
@@ -46,7 +44,7 @@ var actions = Actions(store);
 
 /** @module view */
 //var View = require('./view');
-import View from './view';
+import View from './view/view';
 
 var view = View(store, actions);
 

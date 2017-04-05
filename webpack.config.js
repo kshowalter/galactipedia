@@ -5,7 +5,6 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     app: ['./client/app.js'],
-    test: ['./client/test.js']
   },
   output: {
     path: path.resolve(__dirname, 'public'),

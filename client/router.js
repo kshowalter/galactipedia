@@ -1,15 +1,15 @@
-import appInfo from './app';
+import app_info from './app';
 
 export default function(actions){
 
   function router(actions) {
     if( location.hash === '' || location.hash === '#' ){
-      location.hash = appInfo.defaultPage;
+      location.hash = app_info.default_page;
     } else {
       var url = location.hash.slice(2) || '/';
       var values = url.split('/');
 
-      actions.selectSubject(values[0]);
+      actions.select_subject(values[0]);
 
     }
 

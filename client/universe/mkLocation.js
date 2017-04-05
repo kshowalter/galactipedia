@@ -1,7 +1,7 @@
 import * as system from './define/system';
 import * as star from './define/star';
 import * as planet from './define/planet';
-
+import Chance from 'chance';
 
 
 var mkType = {

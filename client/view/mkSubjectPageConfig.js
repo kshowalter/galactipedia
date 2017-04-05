@@ -14,12 +14,13 @@ var sectionWrap = function(wrappedSpecObject){
 
 
 
-var mkPageLink = function(_id, text, actions){
+var mkPageLink = function(_id, text){
   return {
     tag: 'a',
     props: {
       href: '#',
       onclick: function(){
+        console.log('link to: ', _id);
         var subjectID = _id;
         window.location.hash = '/' + subjectID;
         return false;
@@ -30,7 +31,7 @@ var mkPageLink = function(_id, text, actions){
 };
 
 export default function(state, actions){
-  var subjectId = state.ui.selectedSubject;
+  var subjectId = state.ui.selected_subject;
   var subject = state.db[subjectId];
 
   var container = state.db[subject.containerId];
@@ -96,7 +97,7 @@ export default function(state, actions){
         ', located in ',
         container.type,
         ' ',
-        mkPageLink( container._id, container.name, actions),
+        mkPageLink( container._id, container.name),
         '. ',
         'It\'s catalog ID is: ',
         subject._id
@@ -171,7 +172,7 @@ export default function(state, actions){
           classification,
           state.db[containedSubjectID].type,
           ' ',
-          mkPageLink( containedSubjectID, subject.name, actions)
+          mkPageLink( containedSubjectID, subject.name)
         ]
       });
     });

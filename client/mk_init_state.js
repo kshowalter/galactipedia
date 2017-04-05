@@ -6,7 +6,7 @@ export default function(seed) {
     db: [],
     ui: {
       treeFocus: 'l',
-      selectedSubject: 'l'
+      selected_subject: 'l'
     }
   };
 

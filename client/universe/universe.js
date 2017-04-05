@@ -1,6 +1,6 @@
 import mkLocation from './mkLocation';
-
 import Kstore from 'kstore';
+import Chance from 'chance';
 
 export const typeInfo = {
   // https://en.wikipedia.org/wiki/Orion_Arm#/media/File:Milky_Way_Arms_ssc2008-10.svg

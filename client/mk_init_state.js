@@ -5,8 +5,9 @@ export default function(seed) {
     seed: seed,
     db: [],
     ui: {
-      treeFocus: 'l',
-      selected_subject: 'l'
+      treeFocus: 'l.1',
+      selected_subject: 'l.1',
+      default_page: '/l.1'
     }
   };
 

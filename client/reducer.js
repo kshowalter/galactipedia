@@ -1,10 +1,7 @@
 var components = require('./components');
 
-
-
 module.exports = function(state, action){
   if( action.type === 'init'){
-
     return state;
   }
 
@@ -12,13 +9,10 @@ module.exports = function(state, action){
     console.log(action);
   }
 
-
-  if( action.type === 'select_subject'){
-    state.ui.selected_subject = action.subject_id;
+  if( action.type === 'route'){
+    var subject_id = action.subject_id || state.ui.default_page;
+    state.ui.selected_subject = subject_id;
   }
-
-
-
 
   return state;
 };

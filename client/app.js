@@ -14,7 +14,19 @@ var global = window || global;
 global.logger = console.log;
 global.f = f;
 
+
+
+
+
+
+
+
 var reducer = require('./reducer');
+import Actions from './actions';
+
+
+
+
 var create_store = require('redux').createStore;
 
 var seed = 'phoebe_willow';
@@ -29,13 +41,11 @@ var init_state = mk_init_state(seed);
 var store = create_store(reducer, init_state);
 
 /** @module */
-import Actions from './actions';
 
 var custom_actions = {
-
-  select_subject: function(new_subject_id){
+  route: function(new_subject_id){
     return {
-      type: 'select_subject',
+      type: 'route',
       subject_id: new_subject_id
     };
   },
@@ -52,7 +62,7 @@ var view = View(store, actions);
 
 var selected_subject = sessionStorage.getItem('selected_subject');
 if( selected_subject ){
-  actions.select_subject(selected_subject);
+  actions.route(selected_subject);
 }
 
 router(actions);

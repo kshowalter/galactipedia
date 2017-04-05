@@ -4,17 +4,6 @@ export default function(store, custom_actions){
     dispatch: function(action_config){
       this.store.dispatch(action_config);
     },
-
-
-    //selectSubject: function(newSubjectID){
-    //  this.dispatch({
-    //    type: 'selectSubject',
-    //    subjectID: newSubjectID
-    //  });
-    //}
-
-
-
   };
 
   for( var action_name in custom_actions ){
@@ -24,8 +13,6 @@ export default function(store, custom_actions){
       this.dispatch( action_making_function(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4] ));
     };
   }
-
-
 
   return actions;
 }

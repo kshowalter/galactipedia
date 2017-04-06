@@ -14,7 +14,7 @@ global.f = f;
 
 //////////////
 
-var target_DOM = document.getElementById('content');
+var target_element = document.getElementById('content');
 
 var seed = 'phoebe_willow';
 import mk_init_state from './mk_init_state';
@@ -51,7 +51,7 @@ var mk_page_spec = function(state, actions){
 
 import website from './website/website';
 
-website(target_DOM, init_state, actions, reducers, mk_page_spec);
+website(target_element, init_state, actions, reducers, mk_page_spec);
 
 ///////////////
 

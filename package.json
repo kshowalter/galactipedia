@@ -27,7 +27,8 @@
     "mkdrawing": "kshowalter/mkDrawing",
     "normalize.css": "^5.0.0",
     "redux": "~3.5.2",
-    "specdom": "kshowalter/specdom"
+    "specdom": "kshowalter/specdom",
+    "mkwebsite": "kshowalter/mkwebsite"
   },
   "devDependencies": {
     "babel-core": "~6.8.0",

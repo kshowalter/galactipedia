@@ -1,13 +1,16 @@
-import Actions from './actions';
+import Actions from './Actions';
+import Reducer from './Reducer';
 import router from './router';
 import Specdom  from 'specdom';
 
 var global = window || global;
 
-export default function(target_DOM, init_state, custom_actions, reducer, on_change){
+export default function(target_DOM, init_state, custom_actions, custom_reducers, on_change){
   var target_id = target_DOM.id;
   var specdom = Specdom('#'+target_id);
 
+  var reducer = Reducer(custom_reducers);
+  
   var create_store = require('redux').createStore;
   var store = create_store(reducer, init_state);
   var actions = Actions(store, custom_actions);

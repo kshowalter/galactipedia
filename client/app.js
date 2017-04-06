@@ -20,7 +20,7 @@ var seed = 'phoebe_willow';
 import mk_init_state from './mk_init_state';
 var init_state = mk_init_state(seed);
 
-var custom_actions = {
+var actions = {
   route: function(new_subject_id){
     return {
       type: 'route',
@@ -29,7 +29,17 @@ var custom_actions = {
   },
 };
 
-var reducer = require('./reducer');
+var reducers = {
+  'init': function(state, action){
+    console.log('init', action);
+    return state;
+  },
+  route: function(state, action){
+    var subject_id = action.subject_id || state.ui.default_page;
+    state.ui.selected_subject = subject_id;
+    return state;
+  }
+};
 
 import mkViewConfig from './view/mkViewConfig';
 var mk_page_spec = function(state, actions){
@@ -41,7 +51,7 @@ var mk_page_spec = function(state, actions){
 
 import website from './website/website';
 
-website(target_DOM, init_state, custom_actions, reducer, mk_page_spec);
+website(target_DOM, init_state, actions, reducers, mk_page_spec);
 
 ///////////////
 

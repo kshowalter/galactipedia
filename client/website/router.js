@@ -1,5 +1,3 @@
-import app_info from './app';
-
 export default function(actions){
 
   function router(actions) {

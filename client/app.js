@@ -20,22 +20,16 @@ var seed = 'phoebe_willow';
 import mk_init_state from './mk_init_state';
 var init_state = mk_init_state(seed);
 
-var actions = {
-  route: function(new_subject_id){
-    return {
-      type: 'route',
-      subject_id: new_subject_id
-    };
-  },
-};
 
 var reducers = {
-  'init': function(state, action){
+  // actions.init()
+  init: function(state, action){
     console.log('init', action);
     return state;
   },
+  // actions.route(subject_id)
   route: function(state, action){
-    var subject_id = action.subject_id || state.ui.default_page;
+    var subject_id = action.arguments[0] || state.ui.default_page;
     state.ui.selected_subject = subject_id;
     return state;
   }
@@ -43,19 +37,24 @@ var reducers = {
 
 import mkViewConfig from './view/mkViewConfig';
 var mk_page_spec = function(state, actions){
+  global.state = state; // devmode
+  sessionStorage.setItem('selected_subject', state.ui.selected_subject);
+
   var page_spec = mkViewConfig(state, actions);
   return page_spec;
 };
 
 //////////////
 
-import website from './website/website';
+import website from 'mkwebsite';
 
-website(target_element, init_state, actions, reducers, mk_page_spec);
+var actions = website(target_element, init_state, reducers, mk_page_spec);
 
 ///////////////
 
-
+import router from 'hash_router';
+console.log(actions);
+router(actions.route);
 
 window.onresize = function(){
   //console.log(window.inner_width);

@@ -28,7 +28,8 @@
     "normalize.css": "^5.0.0",
     "redux": "~3.5.2",
     "specdom": "kshowalter/specdom",
-    "mkwebsite": "kshowalter/mkwebsite"
+    "mkwebsite": "kshowalter/mkwebsite",
+    "hash_router": "kshowalter/hash_router"
   },
   "devDependencies": {
     "babel-core": "~6.8.0",

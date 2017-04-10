@@ -53,7 +53,7 @@ var actions = website(target_element, init_state, reducers, mk_page_spec);
 ///////////////
 
 import router from 'hash_router';
-console.log(actions);
+
 router(actions.route);
 
 window.onresize = function(){

@@ -98,11 +98,15 @@ export default function(state, actions){
         container.type,
         ' ',
         mkPageLink( container._id, container.name),
-        '. ',
-        'It\'s catalog ID is: ',
-        subject._id
+        '. '
       ]
     };
+
+    if( subject.description.length ){
+      subject.description.forEach(function(subject_description){
+        description.children.push(subject_description);
+      });
+    }
 
     return description;
   };

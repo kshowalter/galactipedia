@@ -1,4 +1,5 @@
 import mkPageConfig from './mkPageConfig';
+import {div, span, p, a, ul, li, br, h1, h2, h3, input} from 'specdom_helper';
 
 var test = function(input){
   console.log('test', input);

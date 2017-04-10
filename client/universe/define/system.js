@@ -1,16 +1,16 @@
 import mkLocation from '../mkLocation';
-
+var sub_star_modifiers = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
 
 export function summarize(state){
   this.name = _.upperFirst(this._console.chance.word());
 
+  this.info.numStars = this._console.chance.natural({min:1,max:3});
   this.info.numPlanets = this._console.chance.natural({min:1,max:10});
-  this.info.numStars = 1;
 
   for( var i = 1; i <= this.info.numStars; i++){
     var name = this.name;
     if( this.info.numStars !== 1 ){
-      name = this.name +' '+ i;
+      name = this.name +' '+ sub_star_modifiers[i];
     }
 
     var containedItemId = this._id +'.'+ this.contains.length;

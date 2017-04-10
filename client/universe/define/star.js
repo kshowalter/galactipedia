@@ -75,7 +75,7 @@ export const typeInfo = {
 
 
 export function summarize(state){
-  this.name = _.upperFirst(this._console.chance.word());
+  //this.name = _.upperFirst(this._console.chance.word());
 
   return this;
 }

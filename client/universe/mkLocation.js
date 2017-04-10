@@ -19,14 +19,15 @@ export default function(state, request){
     _id: request._id,
     containerId: containerId,
     type: request.type,
-    name: 'unknown',
+    name: request.name || 'unknown',
     info: request.info || {},
     _console: {
       chance: chance
     },
     _spec: mkType[request.type],
     contains: [],
-    illustration: {}
+    illustration: {},
+    description: []
   };
   location.summarize = mkType[request.type].summarize;
   location.addDetails = mkType[request.type].addDetails;

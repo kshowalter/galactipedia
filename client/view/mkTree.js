@@ -12,7 +12,7 @@ export default function mkTree(state, itemId, actions){
           class: 'itemTitleBar' + ' contentItem' + _.upperFirst(item.type),
         },
         onclick: function(){
-          actions.selectSubject(itemId);
+          actions.route(itemId);
         },
         children: [
           {
